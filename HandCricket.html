@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head><title>form with prompt</title>
+<script type = "text/javascript">
+    function hort() {
+      let hortuser = prompt("Heads or tails?");
+      let hortvar = Math.random();
+      if (hortvar<0.5 && hortuser=="heads") {
+        alert("You Won");
+        alert("20 overs match and 1 wicket");
+        alert("Use value only from 1 to 10 else program quits");
+        let bowlorbat = prompt("Bowling or Batting? (Bat for batting and Bowl for bowling)");
+        if (bowlorbat=="Bowl") {bowling(bowled=false, bowlval=0);} else {batting(batted=false, batval=0);}
+      } else if (hortvar>0.5 && hortuser=="tails") {
+        alert("You Won");
+        alert("20 overs match and 1 wicket");
+        alert("Use value only from 1 to 10 else program quits");
+        let bowlorbat = prompt("Bowling or Batting? (Bat for batting and Bowl for bowling)");
+        if (bowlorbat=="Bowl") {bowling(bowled=false, bowlval=0);} else {batting(batted=false, batval=0);}
+      } else {
+        alert("You Lose");
+        alert("20 overs match and 1 wicket");
+        alert("Use value only from 1 to 10 else program quits");
+        bowling(bowled=false, bowlval=0);
+      }
+
+    }
+    function batting(batted, batval) {
+      alert("Batting now!");
+      let bowled = true;
+      let bowlval = 0;
+      for (i=0; i<120; i++) {
+        alert(`Your runs: ${bowlval}`);
+        let bowlanswer = prompt("runs?");
+        let compbowlans = Math.floor(Math.random() * 11);
+        if (bowlanswer > 10) {break;}
+        alert(`Your value: ${bowlanswer} vs Computer Value: ${compbowlans}`);
+        if (bowlanswer == compbowlans) {
+          alert("Out!"); 
+          break;
+          if (bowled==true && batted==true && bowlval > batval) {Score(batval, bowlval);}
+          } else {
+            bowlval += +bowlanswer;
+            if (bowled==true && batted==true && bowlval > batval) {Score(batval, bowlval);}
+            }
+      } if (bowled==true && batted==true) {Score(batval, bowlval);}  else {bowling(bowled=true, bowlval=bowlval);}
+      return [bowled, bowlval];
+    }
+    function bowling(bowled, bowlval) {
+      alert("Bowling now!");
+      let batted = true;
+      let batval = 0;
+      for (i=0; i<120; i++) {
+        alert(`Computer runs: ${batval}`);
+        let batanswer = prompt("runs?");
+        let compbatans = Math.floor(Math.random() * 11);
+        alert(`Your value: ${batanswer} vs Computer Value: ${compbatans}`);
+        if (batanswer == compbatans) {
+          alert("Out!");
+          break;
+          if (bowled==true && batted==true && batval > bowlval) {Score(batval, bowlval);}
+          } else {
+            batval += +compbatans;
+            if (bowled==true && batted==true && batval > bowlval) {Score(batval, bowlval);}
+          } 
+      } if (batted==true && bowled==true) {Score(batval, bowlval);} else {batting(batted=true, batval=batval);}
+      return [batted, batval];
+    }
+    function Score(batval, bowlval) {
+      if (bowlval < batval) {alert("You Lose!");} else {alert("You Won!")}
+    }
+    
+  
+
+</script>
+</head>
+<body>
+<h1> HandCricket With Prompt and Alert <h1>
+<input type="button" value="Heads or Tails" onClick="hort()" />
+</body>
+</html>
+
